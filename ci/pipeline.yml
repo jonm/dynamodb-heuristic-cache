@@ -30,7 +30,6 @@ jobs:
 - name: validate-pr
   plan:
   - get: pr
-    trigger: true
     version: every
   - put: pr
     params:
@@ -68,7 +67,7 @@ jobs:
   - task: verify-unique-version
     file: source/ci/task_verify_unique_version.yml
     params:
-      BUCKET: dest-s3-bucket
+      BUCKET: ((dest-s3-bucket))
       PROJECT: ((package-name))
       AWS_ACCESS_KEY_ID: ((aws-access-key-id))
       AWS_SECRET_ACCESS_KEY: ((aws-secret-access-key))
